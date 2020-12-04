@@ -1,0 +1,516 @@
+Script started on Sun 29 Mar 2020 12:37:41 PM CDT
+]0;rghosh@turing: ~rghosh@turing:~$ script
+Script started, file is typescript
+]0;rghosh@turing: ~rghosh@turing:~$ ./databaseg++ -Wall -I/usr/include/cppconn -o database database.cpp -L/usr/lib -lmysqlcppconn
+database.cpp: In function ‘std::string processInput(std::string)’:
+database.cpp:315:35: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i =0; i < str.length(); i++) {
+                                   ^
+]0;rghosh@turing: ~rghosh@turing:~$ g++ -Wall -I/usr/include/cppconn -o database database.cpp -L/usr/lib -lmysqlcppconn[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./database[K
+Welcome to the database! Please select from one of the following options: 
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 1
+Please enter city name (Dallas, Boston, Fayetteville, New York, Rogers, or Pheonix: 
+new york
+Here are all the agents & their associated clients from NEWYORK
+
+There are no agents in NEWYORK. Please enter the name of another city, or enter 0 to return to the main menu.
+1
+There are no agents in 1. Please enter the name of another city, or enter 0 to return to the main menu.
+rogers
+
+------------------------------------------------------------------
+A_ID               A_NAME             A_CITY             A_ZIP              C_ID               C_NAME             C_CITY             C_ZIP            
+204                BRYAN              ROGERS             78291              105                TAYLOR             ROGERS             78291            
+207                SMITH              ROGERS             78291              105                TAYLOR             ROGERS             78291            
+------------------------------------------------------------------
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 5
+Please enter client information, separated by commas (Name, City, Zip): 
+mason, newyork     york, 53421
+
+------------------------------------------------------------------
+A_ID               A_NAME             A_CITY             A_ZIP            
+201                ANDREW             DALLAS             43214            
+202                PHILIP             PHEONIX            85011            
+203                JERRY              BOSTON             83125            
+204                BRYAN              ROGERS             78291            
+205                TAMMY              DALLAS             43214            
+206                BRANT              FAYETTEVILLE       72701            
+207                SMITH              ROGERS             78291            
+208                MASON              NEWYORK            53421            
+------------------------------------------------------------------
+
+Successfully added agent MASON!
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 2
+Please enter client information, separated by commas (Name, City, Zip):
+rashi, huntsville, 72740
+You entered the following: RASHI HUNTSVILLE  72740
+
+------------------------------------------------------------------
+C_ID               C_NAME             C_CITY             C_ZIP            
+101                CHRIS              DALLAS             43214            
+102                OLIVIA             BOSTON             83125            
+103                ETHAN              FAYETTEVILLE       72701            
+104                DANIEL             NEWYORK            53421            
+105                TAYLOR             ROGERS             78291            
+106                CLAIRE             PHEONIX            85011            
+107                RASHI              HUNTSVILLE         72740            
+------------------------------------------------------------------
+
+Client RASHI has been successfully added!
+
+Here is an avaliable agent in your city: 
+Sorry, there are no agents currently available in the city HUNTSVILLE
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 2
+Please enter client information, separated by commas (Name, City, Zip):
+devin,        faizan, boston, 83          pheonix, 85011
+You entered the following: FAIZAN PHEONIX  85011
+
+------------------------------------------------------------------
+C_ID               C_NAME             C_CITY             C_ZIP            
+101                CHRIS              DALLAS             43214            
+102                OLIVIA             BOSTON             83125            
+103                ETHAN              FAYETTEVILLE       72701            
+104                DANIEL             NEWYORK            53421            
+105                TAYLOR             ROGERS             78291            
+106                CLAIRE             PHEONIX            85011            
+107                RASHI              HUNTSVILLE         72740            
+108                FAIZAN             PHEONIX            85011            
+------------------------------------------------------------------
+
+Client FAIZAN has been successfully added!
+
+Here is an avaliable agent in your city: 
+
+------------------------------------------------------------------
+A_ID               A_NAME             A_CITY             A_ZIP            
+202                PHILIP             PHEONIX            85011            
+------------------------------------------------------------------
+What type of policy would you like to purchase? (Dental, Life, Home, Health, Vehicle)
+car
+
+Here is the policy you selected: 
+Sorry, CAR is an invalid policy! Please re-enter a valid policy (Dental, Life, Home, Health, Vehicle). If you would like to return to the main menu, please enter 0.
+vehicle
+
+Here is the policy you selected: 
+
+------------------------------------------------------------------
+POLICY_ID          NAME               TYPE               COMMISION_PERCENTAGE
+305                UNITEDCAR          VEHICLE            9                
+------------------------------------------------------------------
+Now please enter the agent name you wish to use & the amount (as a decimal number, ex 100.00) for the policy, separated by commas:
+philip, 301.00
+(SELECT MAX(PURCHASE_ID) + 1 FROM (SELECT * FROM POLICIES_SOLD) AS p), (SELECT A_ID FROM AGENTS WHERE A_NAME = 'PHILIP'), (SELECT MAX(C_ID) FROM CLIENT), (SELECT POLICY_ID FROM POLICY WHERE TYPE = 'VEHICLE'), STR_TO_DATE('2020-03-24', '%Y-%m-%d'), 301.00
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+409                203                103                304                2020-01-10         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+
+Successfully purchased your policy for $ 301.00 with agent PHILIP!
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 3
+Please enter an agent name and a city separated by a comma: 
+et  brant, fayetteville
+
+Policies sold by: BRANT
+Sorry, BRANT in FAYETTEVILLE was either not found, or has not yet sold any policies. Please re-enter the agent and city separated by a comma. Enter 0,0 to return to main menu. 
+tommy, rogers
+
+Policies sold by: TOMMY
+Sorry, TOMMY in ROGERS was either not found, or has not yet sold any policies. Please re-enter the agent and city separated by a comma. Enter 0,0 to return to main menu. 
+tommy, dallas
+
+Policies sold by: TOMMY
+Sorry, TOMMY in DALLAS was either not found, or has not yet sold any policies. Please re-enter the agent and city separated by a comma. Enter 0,0 to return to main menu. 
+sm  andrew, dallas
+
+Policies sold by: ANDREW
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+402                201                105                305                2019-08-11         1500.00          
+------------------------------------------------------------------
+Information about policies sold by : ANDREW
+------------------------------------------------------------------
+NAME               COMMISION_PERCENT  AMOUNT             AMOUNT_EARNED_COMMISIONS
+UNITEDCAR          9                  1500.00            135.000000       
+------------------------------------------------------------------
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 4
+Here are all the current sold policies: 
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+409                203                103                304                2020-01-10         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+Please enter the purchase ID you wish to cancel: 
+409
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+Successfully cancelled your policy!
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 4
+Here are all the current sold policies: 
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+Please enter the purchase ID you wish to cancel: 
+419
+That is an invalid purchase ID! Please re-enter a valid purchase ID, or enter 0 to return to main menu.
+0
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 6
+Thank you for using the database! Have a nice day :)
+]0;rghosh@turing: ~rghosh@turing:~$ sc[K[Kexit               1500.00            135.000000       
+UNITEDCAR          9                  1500.00            135.000000       
+------------------------------------------------------------------
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 6
+Thank you for using the database! Have a nice day :)
+]0;rghosh@turing: ~rghosh@turing:~$ script
+Script started, file is typescript
+]0;rghosh@turing: ~rghosh@turing:~$ script
+Script started, file is typescript
+]0;rghosh@turing: ~rghosh@turing:~$ ./databaseg++ -Wall -I/usr/include/cppconn -o database database.cpp -L/usr/lib -lmysqlcppconn
+database.cpp: In function ‘std::string processInput(std::string)’:
+database.cpp:315:35: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i =0; i < str.length(); i++) {
+                                   ^
+]0;rghosh@turing: ~rghosh@turing:~$ g++ -Wall -I/usr/include/cppconn -o database database.cpp -L/usr/lib -lmysqlcppconn[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./database[K
+Welcome to the database! Please select from one of the following options: 
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 1
+Please enter city name (Dallas, Boston, Fayetteville, New York, Rogers, or Pheonix: 
+new york
+Here are all the agents & their associated clients from NEWYORK
+
+There are no agents in NEWYORK. Please enter the name of another city, or enter 0 to return to the main menu.
+1
+There are no agents in 1. Please enter the name of another city, or enter 0 to return to the main menu.
+rogers
+
+------------------------------------------------------------------
+A_ID               A_NAME             A_CITY             A_ZIP              C_ID               C_NAME             C_CITY             C_ZIP            
+204                BRYAN              ROGERS             78291              105                TAYLOR             ROGERS             78291            
+207                SMITH              ROGERS             78291              105                TAYLOR             ROGERS             78291            
+------------------------------------------------------------------
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 5
+Please enter client information, separated by commas (Name, City, Zip): 
+mason, newyork     york, 53421
+
+------------------------------------------------------------------
+A_ID               A_NAME             A_CITY             A_ZIP            
+201                ANDREW             DALLAS             43214            
+202                PHILIP             PHEONIX            85011            
+203                JERRY              BOSTON             83125            
+204                BRYAN              ROGERS             78291            
+205                TAMMY              DALLAS             43214            
+206                BRANT              FAYETTEVILLE       72701            
+207                SMITH              ROGERS             78291            
+208                MASON              NEWYORK            53421            
+------------------------------------------------------------------
+
+Successfully added agent MASON!
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 2
+Please enter client information, separated by commas (Name, City, Zip):
+rashi, huntsville, 72740
+You entered the following: RASHI HUNTSVILLE  72740
+
+------------------------------------------------------------------
+C_ID               C_NAME             C_CITY             C_ZIP            
+101                CHRIS              DALLAS             43214            
+102                OLIVIA             BOSTON             83125            
+103                ETHAN              FAYETTEVILLE       72701            
+104                DANIEL             NEWYORK            53421            
+105                TAYLOR             ROGERS             78291            
+106                CLAIRE             PHEONIX            85011            
+107                RASHI              HUNTSVILLE         72740            
+------------------------------------------------------------------
+
+Client RASHI has been successfully added!
+
+Here is an avaliable agent in your city: 
+Sorry, there are no agents currently available in the city HUNTSVILLE
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 2
+Please enter client information, separated by commas (Name, City, Zip):
+devin,        faizan, boston, 83          pheonix, 85011
+You entered the following: FAIZAN PHEONIX  85011
+
+------------------------------------------------------------------
+C_ID               C_NAME             C_CITY             C_ZIP            
+101                CHRIS              DALLAS             43214            
+102                OLIVIA             BOSTON             83125            
+103                ETHAN              FAYETTEVILLE       72701            
+104                DANIEL             NEWYORK            53421            
+105                TAYLOR             ROGERS             78291            
+106                CLAIRE             PHEONIX            85011            
+107                RASHI              HUNTSVILLE         72740            
+108                FAIZAN             PHEONIX            85011            
+------------------------------------------------------------------
+
+Client FAIZAN has been successfully added!
+
+Here is an avaliable agent in your city: 
+
+------------------------------------------------------------------
+A_ID               A_NAME             A_CITY             A_ZIP            
+202                PHILIP             PHEONIX            85011            
+------------------------------------------------------------------
+What type of policy would you like to purchase? (Dental, Life, Home, Health, Vehicle)
+car
+
+Here is the policy you selected: 
+Sorry, CAR is an invalid policy! Please re-enter a valid policy (Dental, Life, Home, Health, Vehicle). If you would like to return to the main menu, please enter 0.
+vehicle
+
+Here is the policy you selected: 
+
+------------------------------------------------------------------
+POLICY_ID          NAME               TYPE               COMMISION_PERCENTAGE
+305                UNITEDCAR          VEHICLE            9                
+------------------------------------------------------------------
+Now please enter the agent name you wish to use & the amount (as a decimal number, ex 100.00) for the policy, separated by commas:
+philip, 301.00
+(SELECT MAX(PURCHASE_ID) + 1 FROM (SELECT * FROM POLICIES_SOLD) AS p), (SELECT A_ID FROM AGENTS WHERE A_NAME = 'PHILIP'), (SELECT MAX(C_ID) FROM CLIENT), (SELECT POLICY_ID FROM POLICY WHERE TYPE = 'VEHICLE'), STR_TO_DATE('2020-03-24', '%Y-%m-%d'), 301.00
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+409                203                103                304                2020-01-10         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+
+Successfully purchased your policy for $ 301.00 with agent PHILIP!
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 3
+Please enter an agent name and a city separated by a comma: 
+et  brant, fayetteville
+
+Policies sold by: BRANT
+Sorry, BRANT in FAYETTEVILLE was either not found, or has not yet sold any policies. Please re-enter the agent and city separated by a comma. Enter 0,0 to return to main menu. 
+tommy, rogers
+
+Policies sold by: TOMMY
+Sorry, TOMMY in ROGERS was either not found, or has not yet sold any policies. Please re-enter the agent and city separated by a comma. Enter 0,0 to return to main menu. 
+tommy, dallas
+
+Policies sold by: TOMMY
+Sorry, TOMMY in DALLAS was either not found, or has not yet sold any policies. Please re-enter the agent and city separated by a comma. Enter 0,0 to return to main menu. 
+sm  andrew, dallas
+
+Policies sold by: ANDREW
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+402                201                105                305                2019-08-11         1500.00          
+------------------------------------------------------------------
+Information about policies sold by : ANDREW
+------------------------------------------------------------------
+NAME               COMMISION_PERCENT  AMOUNT             AMOUNT_EARNED_COMMISIONS
+UNITEDCAR          9                  1500.00            135.000000       
+------------------------------------------------------------------
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 4
+Here are all the current sold policies: 
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+409                203                103                304                2020-01-10         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+Please enter the purchase ID you wish to cancel: 
+409
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+------------------------------------------------------------------
+Successfully cancelled your policy!
+
+Enter '1' to find all agents and clients in a given city
+      '2' to purchase an available policy from a particular agent
+      '3' to list all policies sold by a particular agent
+      '4' to cancel a policy
+      '5' to add a new agent for a city
+      '6' to quit
+Selection: 4
+Here are all the current sold policies: 
+
+------------------------------------------------------------------
+PURCHASE_ID        AGENT_ID           CLIENT_ID          POLICY_ID          DATE_PURCHASED     AMOUNT           
+401                204                106                303                2020-01-02         2000.00          
+402                201                105                305                2019-08-11         1500.00          
+403                203                106                301                2019-09-08         3000.00          
+404                207                101                305                2019-06-21         1500.00          
+405                203                104                302                2019-11-14         4500.00          
+406                207                105                305                2019-12-25         1500.00          
+407                205                103                304                2020-10-15         5000.00          
+408                204                103                304                2020-02-15         5000.00          
+410                202                103                303                2020-01-30         2000.00          
+411                202                108                305                2020-03-24         301.00           
+-------------------------------------------------------
